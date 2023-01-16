@@ -1,5 +1,8 @@
 const express = require('express');
+const sqlite3 = require('sqlite3')
+
 const app = express();
+const db = new sqlite3.Database('./database')
 const port = 3000;
 
 const homeRouter = require('./routes/home');
@@ -15,10 +18,6 @@ app.use('/login', loginRouter)
 app.use('/logout', logoutRouter)
 app.use('/rate', rateRouter)
 app.use('/clients', clientsRouter)
-
-app.get('/summary', (req, res) => {
-    res.send('TO DO: display summary');
-})
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
