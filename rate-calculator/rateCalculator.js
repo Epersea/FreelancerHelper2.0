@@ -34,12 +34,25 @@ class RateCalculator {
         if (expenses.monthly) {
             return expenses.monthly * 12;
         } 
-        
+
         return monthlyExpenses;
+    }
+
+    calculateNetHoursDay(hours) {
+        const nonBillableHours = hours['hours-day'] * hours['%non-billable'] / 100;
+        const netHours = hours['hours-day'] - nonBillableHours;
+        return netHours;
     }
 }
 
 const calculator = new RateCalculator;
+const hours = {
+    'hours-day': 8,
+    '%non-billable': 20,
+}
+
+const netHoursPerDay = calculator.calculateNetHoursDay(hours);
+console.log(netHoursPerDay)
 
 
 module.exports = RateCalculator;

@@ -1,4 +1,5 @@
 const assert = require('assert');
+//const { describe } = require('mocha');
 const RateCalculator = require('./rateCalculator.js');
 
 const calculator = new RateCalculator;
@@ -18,7 +19,7 @@ describe('Rate Calculator', () => {
                         price: 1000,
                         years: 10
                     }]
-            }
+            };
 
             const annualExpenses = calculator.calculateAnnualExpenses(expenses);
 
@@ -28,7 +29,7 @@ describe('Rate Calculator', () => {
         it('Calculates annual impact of monthly expenses', () => {
             const expenses = {
                 monthly: 100,
-            }
+            };
 
             const annualExpenses = calculator.calculateAnnualExpenses(expenses);
 
@@ -48,11 +49,24 @@ describe('Rate Calculator', () => {
                     }],
                 yearly: 1000,
                 monthly: 100
-            }
+            };
 
             const annualExpenses = calculator.calculateAnnualExpenses(expenses);
 
             assert.equal(annualExpenses, 2600)
+        })
+    })
+
+    describe('Billable hours', () => {
+        it('Calculates net hours per day', () => {
+            const hours = {
+                'hours-day': 8,
+                '%non-billable': 20,
+            }
+
+            const netHoursPerDay = calculator.calculateNetHoursDay(hours);
+
+            assert.equal(netHoursPerDay, 6.4)
         })
     })
 })
