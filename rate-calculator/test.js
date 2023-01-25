@@ -1,6 +1,7 @@
 const assert = require('assert');
 const mocha = require('mocha');
 const RateCalculator = require('./rateCalculator.js');
+const Expenses = require('./expenses.js');
 
 describe('Rate Calculator', () => {
 
@@ -20,9 +21,8 @@ describe('Rate Calculator', () => {
                         }]
                 }    
             };
-            const calculator = new RateCalculator(userInfo);
 
-            const annualExpenses = calculator.calculateAnnualExpenses();
+            const annualExpenses = Expenses.calculateAnnualExpenses(userInfo.expenses);
 
             assert.equal(annualExpenses, 400)
         })
@@ -35,7 +35,7 @@ describe('Rate Calculator', () => {
             };
             const calculator = new RateCalculator(userInfo);
 
-            const annualExpenses = calculator.calculateAnnualExpenses(userInfo.expenses);
+            const annualExpenses = Expenses.calculateAnnualExpenses(userInfo.expenses);
 
             assert.equal(annualExpenses, 1200)
         })
@@ -58,7 +58,7 @@ describe('Rate Calculator', () => {
             };
             const calculator = new RateCalculator(userInfo);
 
-            const annualExpenses = calculator.calculateAnnualExpenses();
+            const annualExpenses = calculator.annualExpenses;
 
             assert.equal(annualExpenses, 2600)
         })
