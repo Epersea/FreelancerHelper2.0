@@ -1,5 +1,7 @@
 class RateCalculator {
 
+    burnOutMessage = 'It looks like you are working too much! Your working habits should be sustainable over the long run. Make sure to have enough rest and holidays and remember everybody gets sick from time to time. Take care!'
+
     calculateAnnualExpenses(expenses) {
         let annualExpenses = 0; 
         annualExpenses += this.calculateLongTermExpenses(expenses);
@@ -38,10 +40,30 @@ class RateCalculator {
         return monthlyExpenses;
     }
 
+    calculateBillableHours(hours) {
+        if (this.userIsWorkingTooMuch(hours)) {
+            return this.burnOutMessage;
+        }
+        const netHoursDay = this.calculateNetHoursDay(hours);
+        const daysPerYear = this.calculateDaysPerYear(hours);
+        const billableHours = (netHoursDay * daysPerYear).toFixed(2);
+        return billableHours;
+    }
+
+    userIsWorkingTooMuch(hours) {
+        return hours['hours-day'] > 10 || hours['days-week'] > 6 || hours.holidays < 15 || hours.sick < 5;
+    }
+
     calculateNetHoursDay(hours) {
         const nonBillableHours = hours['hours-day'] * hours['%non-billable'] / 100;
         const netHours = hours['hours-day'] - nonBillableHours;
         return netHours;
+    }
+
+    calculateDaysPerYear(hours) {
+        const potentialWorkingDays = hours['days-week'] * 52;
+        const realWorkingDays = potentialWorkingDays - hours.holidays - hours.training - hours.sick;
+        return realWorkingDays;
     }
 }
 
