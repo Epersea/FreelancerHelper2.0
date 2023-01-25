@@ -65,6 +65,22 @@ class RateCalculator {
         const realWorkingDays = potentialWorkingDays - hours.holidays - hours.training - hours.sick;
         return realWorkingDays;
     }
+
+    calculateGrossEarnings(userInfo) {
+        const annualNetSalary = userInfo['net-monthly-salary'] * 12;
+        const taxFreePercentage = 100 - userInfo['tax-percent'];
+        const annualExpenses = this.calculateAnnualExpenses(userInfo.expenses);
+        const annualGrossSalary = annualNetSalary * 100 / taxFreePercentage;
+        const annualGrossEarnings = annualGrossSalary + annualExpenses;
+        return annualGrossEarnings;
+    }
+
+    calculateGoalRate(userInfo) {
+        const annualGrossEarnings = this.calculateGrossEarnings(userInfo);
+        const billableHours = this.calculateBillableHours(userInfo.hours);
+        const goalRate = (annualGrossEarnings / billableHours).toFixed(2);
+        return goalRate;
+    }
 }
 
 const calculator = new RateCalculator;

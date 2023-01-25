@@ -58,7 +58,7 @@ describe('Rate Calculator', () => {
     })
 
     describe('Billable hours', () => {
-        
+
         it('Calculates net hours per day', () => {
             const hours = {
                 'hours-day': 8,
@@ -109,7 +109,7 @@ describe('Rate Calculator', () => {
             };
 
             const billableHours = calculator.calculateBillableHours(hours);
-            
+
             const warningMessage = 'It looks like you are working too much! Your working habits should be sustainable over the long run. Make sure to have enough rest and holidays and remember everybody gets sick from time to time. Take care!'
             assert.equal(billableHours, warningMessage);
         })
@@ -125,9 +125,72 @@ describe('Rate Calculator', () => {
             };
 
             const billableHours = calculator.calculateBillableHours(hours);
-            
+
             const warningMessage = 'It looks like you are working too much! Your working habits should be sustainable over the long run. Make sure to have enough rest and holidays and remember everybody gets sick from time to time. Take care!'
             assert.equal(billableHours, warningMessage);
+        })
+    })
+
+    describe('Earnings', () => {
+
+        it('Calculates gross earnings per year', () => {
+            const userInfo = {
+                expenses: {
+                    "long-term": [
+                        {
+                            price: 1500,
+                            years: 5
+                        },
+                        {
+                            price: 1000,
+                            years: 10
+                        }],
+                    yearly: 1000,
+                    monthly: 100
+                },
+                'net-monthly-salary': 2000,
+                'tax-percent': 25,
+            }
+
+            const grossEarningsYear = calculator.calculateGrossEarnings(userInfo);
+
+            assert.equal(grossEarningsYear, 34600)
+
+        })
+    })
+
+    describe('Final results', () => {
+        it('Calculates goal rate', () => {
+            const userInfo = {
+                expenses: {
+                    "long-term": [
+                        {
+                            price: 1500,
+                            years: 5
+                        },
+                        {
+                            price: 1000,
+                            years: 10
+                        }],
+                    yearly: 1000,
+                    monthly: 100
+                },
+                hours: {
+                    'hours-day': 8,
+                    '%non-billable': 20,
+                    'days-week': 5,
+                    holidays: 25,
+                    training: 5,
+                    sick: 8
+                },
+                'net-monthly-salary': 2000,
+                'tax-percent': 25,
+            }
+
+            const goalRate = calculator.calculateGoalRate(userInfo);
+
+            assert.equal(goalRate, 24.35)
+
         })
     })
 })
