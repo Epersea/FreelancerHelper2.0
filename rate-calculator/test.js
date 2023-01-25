@@ -244,9 +244,10 @@ describe('Rate Calculator', () => {
             }
             const calculator = new RateCalculator(userInfo);
 
+            calculator.calculateGoalRate();
             const message = calculator.getFinalMessage(userInfo);
 
-            const expectedMessage = 'You should charge at least 24.35 per hour. You said you want to work 8 hours per day. Of those, 20% will not be billable. Taking weekend, vacation, training and sick time into account, this means you will charge your clients for 1420.8 hours per year. Your goal is to earn 2000 net per month. Since your tax rate is 25% and your estimated annual expenses are 2600, this adds up to 34600 gross per year. 34600 income / 1420.8 hours = 24.35 per hour. Easy peasy!'
+            const expectedMessage = 'You should charge at least 24.35 per hour. You said you want to work 8 hours per day. Of those, 20% will not be billable. Taking weekend, vacation, training and sick time into account, this means you will charge your clients for 1420.80 hours per year. Your goal is to earn 2000 net per month. Since your tax rate is 25% and your estimated annual expenses are 2600, this adds up to 34600 gross per year. 34600 income / 1420.80 hours = 24.35 per hour. Easy peasy!'
             assert.equal(message, expectedMessage)
         })
     })
