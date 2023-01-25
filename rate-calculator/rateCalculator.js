@@ -1,8 +1,13 @@
 class RateCalculator {
 
+    constructor(userInfo) {
+        this.userInfo = userInfo;
+    }
+
     burnOutMessage = 'It looks like you are working too much! Your working habits should be sustainable over the long run. Make sure to have enough rest and holidays and remember everybody gets sick from time to time. Take care!'
 
-    calculateAnnualExpenses(expenses) {
+    calculateAnnualExpenses() {
+        const expenses = this.userInfo.expenses;
         let annualExpenses = 0; 
         annualExpenses += this.calculateLongTermExpenses(expenses);
         annualExpenses += this.calculateYearlyExpenses(expenses);
@@ -40,7 +45,8 @@ class RateCalculator {
         return monthlyExpenses;
     }
 
-    calculateBillableHours(hours) {
+    calculateBillableHours() {
+        const hours = this.userInfo.hours;
         if (this.userIsWorkingTooMuch(hours)) {
             return this.burnOutMessage;
         }
@@ -66,31 +72,23 @@ class RateCalculator {
         return realWorkingDays;
     }
 
-    calculateGrossEarnings(userInfo) {
-        const annualNetSalary = userInfo['net-monthly-salary'] * 12;
-        const taxFreePercentage = 100 - userInfo['tax-percent'];
-        const annualExpenses = this.calculateAnnualExpenses(userInfo.expenses);
+    calculateGrossEarnings() {
+        const annualNetSalary = this.userInfo['net-monthly-salary'] * 12;
+        const taxFreePercentage = 100 - this.userInfo['tax-percent'];
+        const annualExpenses = this.calculateAnnualExpenses(this.userInfo.expenses);
         const annualGrossSalary = annualNetSalary * 100 / taxFreePercentage;
         const annualGrossEarnings = annualGrossSalary + annualExpenses;
         return annualGrossEarnings;
     }
 
-    calculateGoalRate(userInfo) {
-        const annualGrossEarnings = this.calculateGrossEarnings(userInfo);
-        const billableHours = this.calculateBillableHours(userInfo.hours);
+    calculateGoalRate() {
+        const annualGrossEarnings = this.calculateGrossEarnings(this.userInfo);
+        const billableHours = this.calculateBillableHours(this.userInfo.hours);
         const goalRate = (annualGrossEarnings / billableHours).toFixed(2);
         return goalRate;
     }
 }
 
-const calculator = new RateCalculator;
-const hours = {
-    'hours-day': 8,
-    '%non-billable': 20,
-}
-
-const netHoursPerDay = calculator.calculateNetHoursDay(hours);
-console.log(netHoursPerDay)
 
 
 module.exports = RateCalculator;
