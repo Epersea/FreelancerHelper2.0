@@ -2,6 +2,8 @@ const assert = require('assert');
 const mocha = require('mocha');
 const RateCalculator = require('./rateCalculator.js');
 const Expenses = require('./expenses.js');
+const BillableHours = require('./billableHours.js')
+const Earnings = require('./earnings.js')
 
 describe('Rate Calculator', () => {
 
@@ -33,7 +35,6 @@ describe('Rate Calculator', () => {
                     monthly: 100,
                 }
             };
-            const calculator = new RateCalculator(userInfo);
 
             const annualExpenses = Expenses.calculateAnnualExpenses(userInfo.expenses);
 
@@ -56,9 +57,8 @@ describe('Rate Calculator', () => {
                     monthly: 100
                 }
             };
-            const calculator = new RateCalculator(userInfo);
 
-            const annualExpenses = calculator.annualExpenses;
+            const annualExpenses = Expenses.calculateAnnualExpenses(userInfo.expenses);
 
             assert.equal(annualExpenses, 2600)
         })
@@ -73,9 +73,8 @@ describe('Rate Calculator', () => {
                     '%non-billable': 20,
                 }
             };
-            const calculator = new RateCalculator(userInfo);
 
-            const netHoursPerDay = calculator.calculateNetHoursDay(userInfo.hours);
+            const netHoursPerDay = BillableHours.calculateNetHoursDay(userInfo.hours);
 
             assert.equal(netHoursPerDay, 6.4)
         })
@@ -89,9 +88,8 @@ describe('Rate Calculator', () => {
                     sick: 8
                 }
             };
-            const calculator = new RateCalculator(userInfo);
 
-            const daysPerYear = calculator.calculateDaysPerYear(userInfo.hours);
+            const daysPerYear = BillableHours.calculateDaysPerYear(userInfo.hours);
 
             assert.equal(daysPerYear, 222)
         })
@@ -107,9 +105,8 @@ describe('Rate Calculator', () => {
                     sick: 8
                 }
             };
-            const calculator = new RateCalculator(userInfo);
 
-            const billableHours = calculator.calculateBillableHours();
+            const billableHours = BillableHours.calculateBillableHours(userInfo.hours);
 
             assert.equal(billableHours, 1420.8);
         })
@@ -125,9 +122,8 @@ describe('Rate Calculator', () => {
                     sick: 8
                 }
             };
-            const calculator = new RateCalculator(userInfo);
 
-            const billableHours = calculator.calculateBillableHours();
+            const billableHours = BillableHours.calculateBillableHours(userInfo.hours);
 
             const warningMessage = 'It looks like you are working too much! Your working habits should be sustainable over the long run. Make sure to have enough rest and holidays and remember everybody gets sick from time to time. Take care!'
             assert.equal(billableHours, warningMessage);
@@ -144,9 +140,8 @@ describe('Rate Calculator', () => {
                     sick: 2
                 }
             };
-            const calculator = new RateCalculator(userInfo);
 
-            const billableHours = calculator.calculateBillableHours();
+            const billableHours = BillableHours.calculateBillableHours(userInfo.hours);
 
             const warningMessage = 'It looks like you are working too much! Your working habits should be sustainable over the long run. Make sure to have enough rest and holidays and remember everybody gets sick from time to time. Take care!'
             assert.equal(billableHours, warningMessage);
@@ -173,9 +168,8 @@ describe('Rate Calculator', () => {
                 'net-monthly-salary': 2000,
                 'tax-percent': 25,
             }
-            const calculator = new RateCalculator(userInfo);
 
-            const grossEarningsYear = calculator.calculateGrossEarnings(userInfo);
+            const grossEarningsYear = Earnings.calculateGrossEarnings(userInfo);
 
             assert.equal(grossEarningsYear, 34600)
 
