@@ -27,20 +27,4 @@ class BillableHours {
     }
 }
 
-
-const userInfo = {
-    hours : {
-        'hours-day': 9,
-        '%non-billable': 20,
-        'days-week': 5,
-        holidays: 25,
-        training: 5,
-        sick: 2
-    }
-};
-
-const billableHours = BillableHours.calculateBillableHours(userInfo.hours);
-
-console.log(billableHours);
-
 module.exports = BillableHours;

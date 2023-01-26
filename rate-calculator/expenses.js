@@ -1,5 +1,3 @@
-//const RateCalculator = require('./rateCalculator.js');
-
 class Expenses {
 
     static calculateAnnualExpenses(expenses) {

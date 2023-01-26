@@ -1,6 +1,6 @@
 const Expenses = require('./expenses.js');
 const Earnings = require('./earnings.js');
-const BillableHours = require('./billableHours.js')
+const BillableHours = require('./billableHours.js');
 
 class RateCalculator {
 
@@ -12,8 +12,10 @@ class RateCalculator {
     calculateGoalRate() {
         const annualGrossEarnings = Earnings.calculateGrossEarnings(this.userInfo);
         this.userInfo['gross-earnings'] = annualGrossEarnings;
+
         const billableHours = BillableHours.calculateBillableHours(this.userInfo.hours);
         this.userInfo['billable-hours'] = billableHours;
+
         const goalRate = (annualGrossEarnings / billableHours).toFixed(2);
         this.userInfo.goalRate = goalRate;
 

@@ -1,4 +1,4 @@
-const Expenses = require('./expenses.js')
+const Expenses = require('./expenses.js');
 
 class Earnings {
 
