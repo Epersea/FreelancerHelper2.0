@@ -5,7 +5,7 @@ class Expenses {
         annualExpenses += this.calculateLongTermExpenses(expenses);
         annualExpenses += this.calculateYearlyExpenses(expenses);
         annualExpenses += this.calculateMonthlyExpenses(expenses);
-        expenses.annual = annualExpenses;
+        
         return annualExpenses;
     }
 
@@ -32,7 +32,7 @@ class Expenses {
     static calculateMonthlyExpenses(expenses) {
         let monthlyExpenses = 0;
         if (expenses.monthly) {
-            return expenses.monthly * 12;
+            monthlyExpenses = expenses.monthly * 12;
         } 
 
         return monthlyExpenses;

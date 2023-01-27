@@ -3,12 +3,14 @@ class BillableHours {
     static calculateNetHoursDay(hours) {
         const nonBillableHours = hours['hours-day'] * hours['%non-billable'] / 100;
         const netHours = hours['hours-day'] - nonBillableHours;
+
         return netHours;
     }
 
     static calculateDaysPerYear(hours) {
         const potentialWorkingDays = hours['days-week'] * 52;
         const realWorkingDays = potentialWorkingDays - hours.holidays - hours.training - hours.sick;
+
         return realWorkingDays;
     }
 
@@ -19,6 +21,7 @@ class BillableHours {
         const netHoursDay = this.calculateNetHoursDay(hours);
         const daysPerYear = this.calculateDaysPerYear(hours);
         const billableHours = (netHoursDay * daysPerYear).toFixed(2);
+        
         return billableHours;
     }
 
