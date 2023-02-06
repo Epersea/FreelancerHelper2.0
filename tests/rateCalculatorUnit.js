@@ -12,7 +12,7 @@ describe('Rate Calculator', () => {
         it('Calculates annual impact of long-term expenses', () => {
             const userInfo = {
                 expenses : {
-                    "long-term": [
+                    longTerm: [
                         {
                             amount: 1500.0,
                             years: 5
@@ -44,7 +44,7 @@ describe('Rate Calculator', () => {
         it('Aggregates long-term, yearly and monthly expenses', () => {
             const userInfo = {
                 expenses : {
-                    "long-term": [
+                    longTerm: [
                         {
                             amount: 1500.0,
                             years: 5
@@ -69,8 +69,8 @@ describe('Rate Calculator', () => {
         it('Calculates net hours per day', () => {
             const userInfo = {
                 hours : {
-                    'hours-day': 8.0,
-                    'percent-non-billable': 20,
+                    hoursDay: 8.0,
+                    percentNonBillable: 20,
                 }
             };
 
@@ -82,7 +82,7 @@ describe('Rate Calculator', () => {
         it('Calculates days worked per year', () => {
             const userInfo = {
                 hours : {
-                    'days-week': 5,
+                    daysWeek: 5,
                     holidays: 25,
                     training: 5,
                     sick: 8
@@ -97,9 +97,9 @@ describe('Rate Calculator', () => {
         it('Calculates total billable hours', () => {
             const userInfo = {
                 hours : {
-                    'hours-day': 8.0,
-                    'percent-non-billable': 20,
-                    'days-week': 5,
+                    hoursDay: 8.0,
+                    percentNonBillable: 20,
+                    daysWeek: 5,
                     holidays: 25,
                     training: 5,
                     sick: 8
@@ -114,9 +114,9 @@ describe('Rate Calculator', () => {
         it('Sends warning message if user works more than 10 hous per day', () => {
             const userInfo = {
                 hours : {
-                    'hours-day': 10.5,
-                    'percent-non-billable': 20,
-                    'days-week': 5,
+                    hoursDay: 10.5,
+                    percentNonBillable: 20,
+                    daysWeek: 5,
                     holidays: 25,
                     training: 5,
                     sick: 8
@@ -132,9 +132,9 @@ describe('Rate Calculator', () => {
         it('Sends warning message if user does not take enough sick days', () => {
             const userInfo = {
                 hours : {
-                    'hours-day': 9.0,
-                    'percent-non-billable': 20,
-                    'days-week': 5,
+                    hoursDay: 9.0,
+                    percentNonBillable: 20,
+                    daysWeek: 5,
                     holidays: 25,
                     training: 5,
                     sick: 2
@@ -153,7 +153,7 @@ describe('Rate Calculator', () => {
         it('Calculates gross earnings per year', () => {
             const userInfo = {
                 expenses: {
-                    "long-term": [
+                    longTerm: [
                         {
                             amount: 1500.0,
                             years: 5
@@ -165,8 +165,8 @@ describe('Rate Calculator', () => {
                     yearly: 1000.0,
                     monthly: 100
                 },
-                'net-monthly-salary': 2000.0,
-                'tax-percent': 25,
+                netMonthlySalary: 2000.0,
+                taxPercent: 25,
             };
 
             const grossEarningsYear = Earnings.calculateGrossEarnings(userInfo);
@@ -180,7 +180,7 @@ describe('Rate Calculator', () => {
         it('Calculates goal rate', () => {
             const userInfo = {
                 expenses: {
-                    "long-term": [
+                    longTerm: [
                         {
                             amount: 1500.0,
                             years: 5.0
@@ -193,15 +193,15 @@ describe('Rate Calculator', () => {
                     monthly: 100.0
                 },
                 hours: {
-                    'hours-day': 8.0,
-                    'percent-non-billable': 20,
-                    'days-week': 5,
+                    hoursDay: 8.0,
+                    percentNonBillable: 20,
+                    daysWeek: 5,
                     holidays: 25,
                     training: 5,
                     sick: 8
                 },
-                'net-monthly-salary': 2000,
-                'tax-percent': 25,
+                netMonthlySalary: 2000,
+                taxPercent: 25,
             };
             const calculator = new RateCalculator(userInfo);
 
@@ -213,7 +213,7 @@ describe('Rate Calculator', () => {
         it('Sends final message with all the info', () => {
             const userInfo = {
                 expenses: {
-                    "long-term": [
+                    longTerm: [
                         {
                             amount: 1500.0,
                             years: 5
@@ -226,15 +226,15 @@ describe('Rate Calculator', () => {
                     monthly: 100
                 },
                 hours: {
-                    'hours-day': 8.0,
-                    'percent-non-billable': 20,
-                    'days-week': 5,
+                    hoursDay: 8.0,
+                    percentNonBillable: 20,
+                    daysWeek: 5,
                     holidays: 25,
                     training: 5,
                     sick: 8
                 },
-                'net-monthly-salary': 2000,
-                'tax-percent': 25,
+                netMonthlySalary: 2000,
+                taxPercent: 25,
             };
             const calculator = new RateCalculator(userInfo);
             calculator.calculateGoalRate();
