@@ -2,11 +2,11 @@ const Expenses = require('./expenses.js');
 
 class Earnings {
 
-    static calculateGrossEarnings(userInfo) {
-        const annualNetSalary = userInfo['net-monthly-salary'] * 12;
-        const multiplierMinusTax = 100 - userInfo['tax-percent'];
+    static calculateGrossEarnings({ netMonthlySalary, taxPercent, expenses }) {
+        const annualNetSalary = netMonthlySalary * 12;
+        const multiplierMinusTax = 100 - taxPercent;
         const annualGrossSalary = annualNetSalary * 100 / multiplierMinusTax;
-        const annualExpenses = Expenses.calculateAnnualExpenses(userInfo.expenses);
+        const annualExpenses = Expenses.calculateAnnualExpenses(expenses);
         const annualGrossEarnings = annualGrossSalary + annualExpenses;
 
         return annualGrossEarnings;

@@ -11,9 +11,9 @@ class Expenses {
 
     static calculateLongTermExpenses(expenses) {
         let longTermExpenses = 0;
-        if (expenses["long-term"]) {
-            for (let expense of expenses["long-term"]) {
-                longTermExpenses += (expense.price / expense.years);
+        if (expenses.longTerm) {
+            for (let expense of expenses.longTerm) {
+                longTermExpenses += (expense.amount / expense.years);
             }
         }
 
