@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+
+
+    <title>Freelancer Helper: Get organized, work less and earn more</title>
+</head>
+
+<body>
+    <h1>Rate Calculator</h1>
+    <h2>How to fill this form</h2>
+    <p>Welcome to our rate calculator! For starters, we are going to start reviewing your expenses.</p>
+    <p>As a freelancer, you are your own business. And every business has expenses that we need to take into account.
+        For the sake of this calculation, we have divided expenses in 3 groups:</p>
+    <ol>
+        <li>Long-term investments, like a computer or office furniture.</li>
+        <li>Annual expenses, such as software licenses or professional memberships.</li>
+        <li>Monthly expenses, like renting office space.</li>
+    </ol>
+    <p>Use whatever currency you are used to work with.</p>
+    <p>For long-term investments, please include the number of years you plan to use them. For instance, if your laptop
+        costs 1,000 dollars and you plan to use it for 5 years, write “1000” in the amount field and “5” in the years
+        field.</p>
+    <p>For annual and monthly expenses, just write the estimated total.</p>
+    <p>If any of the fields doesn't apply to your situation, just write “0”. Please, don't write negative numbers or the
+        form just won't work!</p>
+    <p>Next, you will need to decide how much do you want to work per day and per week.
+        We encourage you to be realistic and mindful of your health and work-life balance.
+        We do not recommend working more than 8 hours per day or 5 days per week long-term.</p>
+    <p>Remember, if something doesn't apply to your case, just write “0”.</p>
+    <p>And finally, you will have to input how much do you want to earn per month and what percentage will be dedicated to taxes.</p>
+    <p>When you are done, just click on "Calculate"!</p>
+    <br>
+
+    <form action="/rate" method="post">
+        <h2>Long-term investments</h2>
+        <div>
+            <p>Computer and other hardware:</p>
+            <input autocomplete="off" name="fixed1amount" placeholder="Amount" type="number"
+                min="0">
+            <input autocomplete="off" name="fixed1years" placeholder="Years" type="number"
+                min="0">
+        </div>
+        <div>
+            <p>Office equipment:</p>
+            <input autocomplete="off" name="fixed2amount" placeholder="Amount" type="number"
+                min="0">
+            <input autocomplete="off" name="fixed2years" placeholder="Years" type="number"
+                min="0">
+        </div>
+        <div>
+            <p>Set-up marketing costs (for example, creating a website):</p>
+            <input autocomplete="off" name="fixed3amount" placeholder="Amount" type="number"
+                min="0">
+            <input autocomplete="off" name="fixed3years" placeholder="Years" type="number"
+                min="0">
+        </div>
+        <div>
+            <p>Other:</p>
+            <input autocomplete="off" name="fixed4amount" placeholder="Amount" type="number"
+                min="0">
+            <input autocomplete="off" name="fixed4years" placeholder="Years" type="number"
+                min="0">
+        </div>
+        <h2>Annual expenses</h2>
+        <p>For example: training, software with annual licenses, office supplies, professional memberships, Internet
+            domains, marketing and advertising, business trips…</p>
+        <div>
+            <p>Total:</p>
+            <input autocomplete="off" name="yearly" placeholder="Total" type="number"
+                min="0">
+        </div>
+        <h2>Monthly expenses</h2>
+        <p>For example: rent, bills such as phone and Internet, software with monthly licenses…</p>
+        <div>
+            <p>Total:</p>
+            <input autocomplete="off" name="monthly" placeholder="Total" type="number"
+                min="0">
+        </div>
+        <h2>Working time</h2>
+        <div>
+            <p>So… how many hours do you want to work per day?</p>
+            <input autocomplete="off" name="hoursperday" placeholder="Hours" type="number" min="0">
+        </div>
+        <div>
+            <p>What percentage of this time will be spent in non-billable tasks? For instance, replying to emails, accounting, looking for new clients…
+                If you are not sure, we think 20% is a reasonable estimation in most cases. (Please don't write the % sign).</p>
+            <input autocomplete="off" name="percentnonbillable" placeholder="%" type="number" min="0">
+        </div>
+        <div>
+            <p>How many days do you want to work per week?</p>
+            <input autocomplete="off" name="daysperweek" placeholder="Days" type="number" min="0" max="7">
+        </div>
+        <div>
+            <p>How many holidays are you taking a year?</p>
+            <input autocomplete="off" name="holidays" placeholder="Days" type="number" min="0" max="365">
+        </div>
+        <div>
+            <p>How many days per year will you spend in training and conferences?</p>
+            <input autocomplete="off" name="trainingdays" placeholder="Days" type="number" min="0" max="365">
+        </div>
+        <div>
+            <p> How many sick days are you allowing per year?</p>
+            <input autocomplete="off" name="sickdays" placeholder="Days" type="number" min="0" max="365">
+        </div>
+        <div>
+            <h2>Earnings</h2>
+            <p>How much do you want to earn per month net?</p>
+            <input autocomplete="off" name="netmonth" placeholder="EUR" type="number" min="0">
+        </div>
+        <div>
+            <p>What percentage of your earnings will be dedicated to taxes?
+                This can vary a lot between countries and income brackets, so please do your research!
+                (Please don't write the % sign.)
+            </p>
+            <input autocomplete="off" name="taxpercent" placeholder="%" type="number" min="0">
+        </div>
+        <br>
+            <button type="submit">Calculate</button>
+        </form>
+
+</body>
+
+</html>
