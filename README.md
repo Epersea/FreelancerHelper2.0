@@ -1,3 +1,3 @@
-Freelancer Helper v2 in Node/Express, with major code refactor and new functionalities.
+Freelancer Helper is a web app with utilities to help freelancers get organized, earn more and work less. This is version 2.0 in Node/Express, with a major code refactor and new functionalities.
 
-Work in progress.
+Currently, this a work in progress. Please check [this presentation](https://docs.google.com/presentation/d/1UfqHkN_4qB6Zn3mY8_De1G0NZNjn9wEqJ4nuSy8OF1M/edit#slide=id.p) for more details about the scope of the project and planned improvements over the legacy version.
