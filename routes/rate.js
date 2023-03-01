@@ -10,12 +10,6 @@ rateRouter.get('/', (req, res) => {
 })
 
 rateRouter.post('/', validate({ body:userInfoSchema }), (req, res) => {
-    /*try { 
-        validate(req.body, userInfoSchema);
-    } catch(error) { 
-        res.status(401).end("Invalid body format: " + error.message); 
-        return;
-    }*/
     const calculator = new RateCalculator(req.body);
     calculator.calculateGoalRate();
     const message = calculator.getFinalMessage();
