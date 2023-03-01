@@ -32,7 +32,21 @@ const userInfo = {
     taxPercent: 25,
 };
 
-
+const invalidUserInfo = {
+    expenses: {
+        longTerm: [
+            {
+                amount: 1000.0,
+                years: 2
+            },
+            {
+                amount: 220.0,
+                years: 10
+            }],
+        yearly: 4000.0,
+        monthly: 120
+    },
+}
 
 describe('Rate calculator endpoints', () => {
     it('Gets rate calculator form page', (done) => {
