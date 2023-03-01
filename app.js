@@ -8,7 +8,7 @@ const db = new sqlite3.Database('./database')
 const port = 3000;
 
 app.use(express.json());
-app.use(morgan('common'));
+app.use(morgan('dev'));
 
 const homeRouter = require('./routes/home');
 const registerRouter = require('./routes/register');
