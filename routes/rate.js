@@ -6,7 +6,7 @@ const {validate} = new Validator();
 const userInfoSchema = require('../rate-calculator/userInfoSchema.json')
 
 rateRouter.get('/', (req, res) => {
-    res.send('TO DO: rate calculator form');
+    res.sendFile('/Users/elisafernandezvic/Desktop/CODING/FH_node/templates/ratecalcform.html');
 })
 
 rateRouter.post('/', validate({ body:userInfoSchema }), (req, res) => {
