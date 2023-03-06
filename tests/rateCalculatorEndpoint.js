@@ -54,7 +54,7 @@ describe('Rate calculator endpoints', () => {
             .get('/')
             .end((err, res) => {
                 expect(res).to.have.status(200);
-                expect(res.text).to.equal('TO DO: rate calculator form');
+                expect(res).to.be.html;
                 done();
             });
     });
@@ -66,6 +66,17 @@ describe('Rate calculator endpoints', () => {
             .end((err, res) => {
                 expect(res).to.have.status(200);
                 expect(res.text).to.equal('You should charge at least 24.35 per hour. You said you want to work 8 hours per day. Of those, 20% will not be billable. Taking weekend, vacation, training and sick time into account, this means you will charge your clients for 1420.80 hours per year. Your goal is to earn 2000 net per month. Since your tax rate is 25% and your estimated annual expenses are 2600, this adds up to 34600 gross per year. 34600 income / 1420.80 hours = 24.35 per hour. Easy peasy!');
+                done();
+            });
+    });
+
+    it('Throws error when user info does not follow schema', (done) => {
+        chai.request(rateCalcURL)
+            .post('/')
+            .send(invalidUserInfo)
+            .end((err, res) => {
+                expect(res).to.have.status(400);
+                expect(res.text).to.equal("must have required property \'hours\'");
                 done();
             });
     });
