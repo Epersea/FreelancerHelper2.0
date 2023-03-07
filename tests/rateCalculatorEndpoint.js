@@ -27,20 +27,17 @@ const formInput = {
     taxPercent: '25'
   }
 
-const invalidUserInfo = {
-    expenses: {
-        longTerm: [
-            {
-                amount: 1000.0,
-                years: 2
-            },
-            {
-                amount: 220.0,
-                years: 10
-            }],
-        yearly: 4000.0,
-        monthly: 120
-    },
+const invalidFormInput = {
+    fixed1amount: '1500.0',
+    fixed1years: '5',
+    fixed2amount: '1000.0',
+    fixed2years: '10',
+    fixed3amount: '0',
+    fixed3years: '0',
+    fixed4amount: '0',
+    fixed4years: '0',
+    yearly: '1000.0',
+    monthly: '100',
 }
 
 describe('Rate calculator endpoints', () => {
@@ -68,10 +65,10 @@ describe('Rate calculator endpoints', () => {
     it('Throws error when user info does not follow schema', (done) => {
         chai.request(rateCalcURL)
             .post('/')
-            .send(invalidUserInfo)
+            .send(invalidFormInput)
             .end((err, res) => {
                 expect(res).to.have.status(400);
-                expect(res.text).to.equal("must have required property \'fixed1amount\'");
+                expect(res.text).to.equal("must have required property \'hoursDay\'");
                 done();
             });
     });
