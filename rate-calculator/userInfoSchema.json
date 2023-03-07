@@ -4,198 +4,115 @@
     "default": {},
     "title": "User Info Schema",
     "required": [
-        "expenses",
-        "hours",
+        "fixed1amount",
+        "fixed1years",
+        "fixed2amount",
+        "fixed2years",
+        "fixed3amount",
+        "fixed3years",
+        "fixed4amount",
+        "fixed4years",
+        "yearly",
+        "monthly",
+        "hoursDay",
+        "percentNonBillable",
+        "daysWeek",
+        "holidays",
+        "training",
+        "sick",
         "netMonthlySalary",
         "taxPercent"
     ],
     "properties": {
-        "expenses": {
-            "type": "object",
-            "default": {},
-            "title": "User expenses",
-            "required": [],
-            "properties": {
-                "longTerm": {
-                    "type": "array",
-                    "default": [],
-                    "title": "Long term expenses",
-                    "items": {
-                        "type": "object",
-                        "title": "Each long term expense",
-                        "required": [
-                            "amount",
-                            "years"
-                        ],
-                        "properties": {
-                            "amount": {
-                                "type": "integer",
-                                "title": "Amount of each long term expense",
-                                "minimum": 0,
-                                "examples": [
-                                    1500,
-                                    1000
-                                ]
-                            },
-                            "years": {
-                                "type": "integer",
-                                "title": "Years of amortization of each long term expense",
-                                "exclusiveMinimum": 0,
-                                "examples": [
-                                    5,
-                                    10
-                                ]
-                            }
-                        },
-                        "examples": [{
-                            "amount": 1500,
-                            "years": 5
-                        },
-                        {
-                            "amount": 1000,
-                            "years": 10
-                        }]
-                    },
-                    "examples": [
-                        [{
-                            "amount": 1500,
-                            "years": 5
-                        },
-                        {
-                            "amount": 1000,
-                            "years": 10
-                        }]
-                    ]
-                },
-                "yearly": {
-                    "type": "integer",
-                    "default": 0,
-                    "minimum": 0,
-                    "title": "Yearly expenses",
-                    "examples": [
-                        1000
-                    ]
-                },
-                "monthly": {
-                    "type": "integer",
-                    "default": 0,
-                    "minimum": 0,
-                    "title": "Monthly expenses",
-                    "examples": [
-                        100
-                    ]
-                }
-            },
-            "examples": [{
-                "longTerm": [{
-                    "amount": 1500,
-                    "years": 5
-                },
-                {
-                    "amount": 1000,
-                    "years": 10
-                }],
-                "yearly": 1000,
-                "monthly": 100
-            }]
+        "fixed1amount": {
+            "type": "string",
+            "default": 0,
+            "title": "Fixed expense 1: amount"
         },
-        "hours": {
-            "type": "object",
-            "default": {},
-            "title": "Data to calculate hours worked",
-            "required": [
-                "hoursDay",
-                "percentNonBillable",
-                "daysWeek",
-                "holidays",
-                "training",
-                "sick"
-            ],
-            "properties": {
-                "hoursDay": {
-                    "type": "integer",
-                    "default": 0,
-                    "exclusiveMinimum": 0,
-                    "maximum": 24,
-                    "title": "Hours worked per day",
-                    "examples": [
-                        8
-                    ]
-                },
-                "percentNonBillable": {
-                    "type": "integer",
-                    "default": 0,
-                    "exclusiveMinimum": 0,
-                    "exclusiveMaximum": 100,
-                    "title": "Percent of hours that are non-billable",
-                    "examples": [
-                        20
-                    ]
-                },
-                "daysWeek": {
-                    "type": "integer",
-                    "default": 0,
-                    "exclusiveMinimum": 0,
-                    "maximum": 7,
-                    "title": "Days worked per week",
-                    "examples": [
-                        5
-                    ]
-                },
-                "holidays": {
-                    "type": "integer",
-                    "default": 0,
-                    "maximum": 365,
-                    "title": "Holidays per year",
-                    "examples": [
-                        25
-                    ]
-                },
-                "training": {
-                    "type": "integer",
-                    "default": 0,
-                    "maximum": 365,
-                    "title": "Training days per year",
-                    "examples": [
-                        5
-                    ]
-                },
-                "sick": {
-                    "type": "integer",
-                    "default": 0,
-                    "maximum": 365,
-                    "title": "Sick days per year",
-                    "examples": [
-                        8
-                    ]
-                }
-            },
-            "examples": [{
-                "hoursDay": 8,
-                "percentNonBillable": 20,
-                "daysWeek": 5,
-                "holidays": 25,
-                "training": 5,
-                "sick": 8
-            }]
+        "fixed1years": {
+            "type": "string",
+            "default": 0,
+            "title": "Fixed expense 1: years of amortization"
+        },
+        "fixed2amount": {
+            "type": "string",
+            "default": 0,
+            "title": "Fixed expense 2: amount"
+        },
+        "fixed2years": {
+            "type": "string",
+            "default": 0,
+            "title": "Fixed expense 2: years of amortization"
+        },
+        "fixed3amount": {
+            "type": "string",
+            "default": 0,
+            "title": "Fixed expense 3: amount"
+        },
+        "fixed3years": {
+            "type": "string",
+            "default": 0,
+            "title": "Fixed expense 3: years of amortization"
+        },
+        "fixed4amount": {
+            "type": "string",
+            "default": 0,
+            "title": "Fixed expense 4: amount"
+        },
+        "fixed4years": {
+            "type": "string",
+            "default": 0,
+            "title": "Fixed expense 4: years of amortization"
+        },
+        "yearly": {
+            "type": "string",
+            "default": 0,
+            "title": "Yearly expenses"
+        },
+        "monthly": {
+            "type": "string",
+            "default": 0,
+            "title": "Monthly expenses"
+        },
+        "hoursDay": {
+            "type": "string",
+            "default": 0,
+            "title": "Hours worked per day"
+        },
+        "percentNonBillable": {
+            "type": "string",
+            "default": 0,
+            "title": "Percent of hours that are non-billable"
+        },
+        "daysWeek": {
+            "type": "string",
+            "default": 0,
+            "title": "Days worked per week"
+        },
+        "holidays": {
+            "type": "string",
+            "default": 0,
+            "title": "Holidays per year"
+        },
+        "training": {
+            "type": "string",
+            "default": 0,
+            "title": "Training days per year"
+        },
+        "sick": {
+            "type": "string",
+            "default": 0,
+            "title": "Sick days per year"
         },
         "netMonthlySalary": {
-            "type": "integer",
+            "type": "string",
             "default": 0,
-            "exclusiveMinimum": 0,
-            "title": "Desired net salary per month",
-            "examples": [
-                2000
-            ]
+            "title": "Desired net salary per month"
         },
         "taxPercent": {
-            "type": "integer",
+            "type": "string",
             "default": 0,
-            "maximum": 100,
-            "title": "Percent paid as taxes",
-            "examples": [
-                25
-            ]
+            "title": "Percent paid as taxes"
         }
     }
 }
