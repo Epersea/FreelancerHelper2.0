@@ -6,10 +6,12 @@ const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('./database');
 const morgan = require('morgan');
 const {ValidationError} = require('express-json-validator-middleware');
+const bodyParser = require('body-parser');
 
 
 app.use(express.json());
 app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({extended: false}));
 
 const homeRouter = require('./routes/home');
 const registerRouter = require('./routes/register');
@@ -27,6 +29,7 @@ app.use('/clients', clientsRouter);
 
 app.use((err, req, res, next) => {
   if (err instanceof ValidationError) {
+    console.log(req.body);
     res.status(400).send(err.validationErrors.body[0].message);
     next();
   } else {
