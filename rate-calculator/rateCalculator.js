@@ -6,11 +6,11 @@ class RateCalculator {
 
     constructor(userInfo) {
         this.userInfo = {...userInfo};
-        this.userInfo.annualExpenses = Expenses.calculateAnnualExpenses(userInfo.expenses);
+        this.userInfo.annualExpenses = Expenses.calculateAnnualExpenses(userInfo.expenses).toFixed(2);
     }
 
     calculateGoalRate() {
-        const annualGrossEarnings = Earnings.calculateGrossEarnings(this.userInfo);
+        const annualGrossEarnings = Earnings.calculateGrossEarnings(this.userInfo).toFixed(2);
         this.userInfo.grossEarnings = annualGrossEarnings;
 
         const billableHours = BillableHours.calculateBillableHours(this.userInfo.hours);
